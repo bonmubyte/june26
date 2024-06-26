@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.logo img {
+  width: 100px;
+}
+
+.nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  font-weight: bold;
+  color: #f00;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchInput {
+  padding: 5px 30px 5px 5px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.searchButton {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

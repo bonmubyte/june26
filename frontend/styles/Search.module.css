@@ -1,0 +1,46 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.article {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.articleInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.articleInfo h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.articleInfo p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666;
+}
