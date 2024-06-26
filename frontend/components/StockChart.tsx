@@ -86,14 +86,11 @@ const StockChart: React.FC = () => {
 
         console.log("Parsed WebSocket message:", messageData);
 
-        if (
-          messageData.type === "trade" &&
-          messageData.data &&
-          messageData.data[0]
-        ) {
-          const price = messageData.data[0].p;
+        if (messageData.price !== undefined) {
+          const price = parseFloat(messageData.price);
           const time = moment().tz("America/New_York").format("HH:mm:ss");
           console.log(`(x, y) = (${time}, ${price})`);
+          console.log(`Current Price Value: ${price}`);
 
           if (stockData.marketStatus === "Pre-Market") {
             console.log(`Updating preMarketPrice to: ${price}`);
@@ -132,7 +129,7 @@ const StockChart: React.FC = () => {
       clearInterval(stockDataIntervalId);
       webSocketCleanup();
     };
-  }, []);
+  }, [stockData]);
 
   return (
     <div className={styles.container}>
@@ -146,7 +143,7 @@ const StockChart: React.FC = () => {
             <h3>Pre-Market NVDA Price: ${preMarketPrice}</h3>
             <h3>
               Current NVDA Market Cap:{" "}
-              {(preMarketPrice * 629000000).toLocaleString()}
+              {(parseFloat(preMarketPrice) * 629000000).toLocaleString()}
             </h3>
           </>
         )}
@@ -155,7 +152,7 @@ const StockChart: React.FC = () => {
             <h3>Post-Market NVDA Price: ${postMarketPrice}</h3>
             <h3>
               Current NVDA Market Cap:{" "}
-              {(postMarketPrice * 629000000).toLocaleString()}
+              {(parseFloat(postMarketPrice) * 629000000).toLocaleString()}
             </h3>
           </>
         )}
