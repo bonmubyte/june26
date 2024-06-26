@@ -1,7 +1,8 @@
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
-const storePrice = require("./storePrice"); // Import the storePrice function
+const storePrice = require("./storePrice");
+const path = require("path");
 
 const app = express();
 const PORT = 5001;
@@ -71,7 +72,7 @@ const connectToFinnhub = () => {
         clients.forEach((client) =>
           client.send(JSON.stringify({ time: formattedTime, price }))
         );
-        storePrice(formattedTime, price); // Store the time and price
+        storePrice(formattedTime, price);
         lastSentSecond = currentSecond;
       }
     }
@@ -88,6 +89,9 @@ const connectToFinnhub = () => {
 };
 
 connectToFinnhub();
+
+// Serve the data.json file
+app.use("/data.json", express.static(path.join(__dirname, "data.json")));
 
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

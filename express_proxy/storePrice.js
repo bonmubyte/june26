@@ -1,7 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 
-const dataFilePath = path.join(__dirname, "priceData.json");
+const dataFilePath = path.join(__dirname, "data.json");
+
+// Initialize data.json as an empty array
+const initializeDataFile = () => {
+  fs.writeFileSync(dataFilePath, JSON.stringify([]), (err) => {
+    if (err) {
+      console.error("Error initializing data file", err);
+    }
+  });
+};
 
 const storePrice = (time, price) => {
   fs.readFile(dataFilePath, (err, data) => {
@@ -26,5 +35,8 @@ const storePrice = (time, price) => {
     });
   });
 };
+
+// Initialize the data file when the module is loaded
+initializeDataFile();
 
 module.exports = storePrice;
